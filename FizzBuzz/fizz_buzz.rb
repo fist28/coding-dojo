@@ -1,23 +1,26 @@
 class FizzBuzz
   attr_reader :range
+  MAX_RANGE_SIZE = 1000.freeze
+  FIZZ_DIVISION = 3.freeze
+  BUZZ_DIVISION = 5.freeze
 
   def initialize(input)
-    @range = if input.is_a?(Integer)
+    @range = if input.instance_of?(Integer)
                input..input
-             elsif input.is_a?(Range)
+             elsif input.instance_of?(Range)
                input
              end
   end
 
   def call
     raise ArgumentError unless range
-    raise ArgumentError if range.size >= 1000
+    raise ArgumentError if range.size >= MAX_RANGE_SIZE
     range.map do |number|
-      if number % 3 == 0 && number % 5 == 0
+      if (number % FIZZ_DIVISION).equal?(0) && (number % BUZZ_DIVISION).equal?(0)
         'FizzBuzz'
-      elsif number % 3 == 0
+      elsif (number % FIZZ_DIVISION).equal?(0)
         'Fizz'
-      elsif number % 5 == 0
+      elsif (number % BUZZ_DIVISION).equal?(0)
         'Buzz'
       else
         number

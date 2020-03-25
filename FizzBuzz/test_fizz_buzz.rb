@@ -1,6 +1,8 @@
+require 'simplecov'
 require 'minitest'
 require 'minitest/autorun'
 require 'mutant/minitest/coverage'
+SimpleCov.start
 require_relative "fizz_buzz"
 
 class TestFizzBuzz < Minitest::Test

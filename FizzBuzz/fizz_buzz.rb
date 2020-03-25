@@ -16,15 +16,29 @@ class FizzBuzz
     raise ArgumentError unless range
     raise ArgumentError if range.size >= MAX_RANGE_SIZE
     range.map do |number|
-      if (number % FIZZ_DIVISION).equal?(0) && (number % BUZZ_DIVISION).equal?(0)
-        'FizzBuzz'
-      elsif (number % FIZZ_DIVISION).equal?(0)
-        'Fizz'
-      elsif (number % BUZZ_DIVISION).equal?(0)
-        'Buzz'
-      else
-        number
-      end
+      replace(number)
     end.join("\n")
+  end
+
+  private
+
+  def replace(number)
+    if fizz(number) && buzz(number)
+      'FizzBuzz'
+    elsif fizz(number)
+      'Fizz'
+    elsif buzz(number)
+      'Buzz'
+    else
+      number
+    end
+  end
+
+  def buzz(number)
+    (number % BUZZ_DIVISION).equal?(0)
+  end
+
+  def fizz(number)
+    (number % FIZZ_DIVISION).equal?(0)
   end
 end
